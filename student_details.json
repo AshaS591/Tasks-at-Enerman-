@@ -1,0 +1,47 @@
+[
+    {
+        "name": "Asha",
+        "roll_no": "101",
+        "marks": {
+            "Math": 88,
+            "Physics": 91,
+            "Chemistry": 85
+        }
+    },
+    {
+        "name": "Akshay",
+        "roll_no": "102",
+        "marks": {
+            "Math": 76,
+            "Physics": 82,
+            "Chemistry": 79
+        }
+    },
+    {
+        "name": "Ram",
+        "roll_no": "103",
+        "marks": {
+            "Math": 90,
+            "Physics": 87,
+            "Chemistry": 92
+        }
+    },
+    {
+        "name": "Dev",
+        "roll_no": "104",
+        "marks": {
+            "Math": 69,
+            "Physics": 74,
+            "Chemistry": 70
+        }
+    },
+    {
+        "name": "vikki",
+        "roll_no": "110",
+        "marks": {
+            "Math": 90,
+            "Physics": 67,
+            "Chemistry": 56
+        }
+    }
+]

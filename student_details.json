@@ -1,7 +1,7 @@
 [
     {
         "name": "Asha",
-        "roll_no": "101",
+        "rollno": "101",
         "marks": {
             "Math": 88,
             "Physics": 91,
@@ -10,7 +10,7 @@
     },
     {
         "name": "Akshay",
-        "roll_no": "102",
+        "rollno": "102",
         "marks": {
             "Math": 76,
             "Physics": 82,
@@ -19,7 +19,7 @@
     },
     {
         "name": "Ram",
-        "roll_no": "103",
+        "rollno": "103",
         "marks": {
             "Math": 90,
             "Physics": 87,
@@ -28,7 +28,7 @@
     },
     {
         "name": "Dev",
-        "roll_no": "104",
+        "rollno": "104",
         "marks": {
             "Math": 69,
             "Physics": 74,
@@ -37,11 +37,20 @@
     },
     {
         "name": "vikki",
-        "roll_no": "110",
+        "rollno": "110",
         "marks": {
             "Math": 90,
             "Physics": 67,
             "Chemistry": 56
+        }
+    },
+    {
+        "name": "divya",
+        "rollno": "12",
+        "marks": {
+            "Math": 67.0,
+            "Physics": 56.0,
+            "Chemistry": 45.0
         }
     }
 ]

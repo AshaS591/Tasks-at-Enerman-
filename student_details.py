@@ -112,7 +112,7 @@ def search_by_rollno(rollno):
     if student:
         student.display()
     else:
-        print('Student not fond')
+        print('Student not found')
     
 def menu():
     global students_by_rollno

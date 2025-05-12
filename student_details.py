@@ -17,18 +17,20 @@
 # - List of objects
 # - OOP principles
 import json
+students_by_rollno={} 
+
 
 def read_data():
     try:
         with open('student_details.json', 'r') as file:
             data = json.load(file)
-            return [Student.from_dict(item) for item in data]
+            return {item['rollno'] : Student.from_dict(item) for item in data}
     except FileNotFoundError:
         return []
 
 def write_data(students):
     with open('student_details.json', 'w') as file:
-        json.dump([student.to_dict() for student in students], file, indent=4)
+        json.dump([student.to_dict() for student in students.values()], file, indent=4)
 
 class Student:
     def __init__(self,name,roll_no,marks):
@@ -61,44 +63,48 @@ class Student:
     def from_dict(cls, data):
         return cls(data['name'], data['rollno'], data['marks'])
        
-students=read_data()  
-students_by_rollno={student.rollno: student for student in students}      
+  
+def student_object_creation(rollno):
+    name = input("Enter name: ")
+    marks = {}
+    try:
+        subjects = int(input("Enter number of subjects: "))
+    except Exception as msg:
+        print(msg)
+    else:
+        for _ in range(subjects):
+            subject = input("Enter subject name: ")
+            try:
+                mark = float(input(f"Enter marks for {subject}: "))
+            except Exception as msg:
+                print(msg)
+            else:
+                    marks[subject] = mark
+            
+            student = Student(name, rollno, marks)
+            
+            students_by_rollno[rollno] = student
+            write_data(students_by_rollno)
+            print("Student added successfully.\n")
+
 
 def add_student():
   
-    name = input("Enter name: ")
     roll_no = input("Enter roll number: ")
     
-    if roll_no not in students:
-        marks = {}
-        try:
-            subjects = int(input("Enter number of subjects: "))
-        except Exception as msg:
-            print(msg)
-        else:
-            for _ in range(subjects):
-                subject = input("Enter subject name: ")
-                try:
-                    mark = float(input(f"Enter marks for {subject}: "))
-                except Exception as msg:
-                    print(msg)
-                else:
-                    marks[subject] = mark
-            
-            student = Student(name, roll_no, marks)
-            students.append(student)
-            students_by_rollno[roll_no] = student
-            write_data(students)
-            print("Student added successfully.\n")
+    if roll_no not in students_by_rollno:
+        student_object_creation(roll_no)
+
+       
     else:
-        print("Student with this roll number already exists.\n")
-        return  
+        print("Student with this roll number already exists.Try with some other number..\n")
+        add_student()  
 
 def display_all():
-    if not students:
+    if not students_by_rollno:
         print("No students to display.\n")
         return
-    for student in students:
+    for student in students_by_rollno.values():
         student.display()
 
 def search_by_rollno(rollno):
@@ -109,6 +115,8 @@ def search_by_rollno(rollno):
         print('Student not fond')
     
 def menu():
+    global students_by_rollno
+    students_by_rollno = read_data()
     while True:
         try:
             choice = int(input("""Enter choice:\n1. Add Student\n2. Display All\n3. Search by Roll No\n4. Exit\n"""))
@@ -129,5 +137,6 @@ def menu():
             else:
                 print('Invalid choice..')
 
-menu()
+if __name__ == '__main__':
+    menu()
         

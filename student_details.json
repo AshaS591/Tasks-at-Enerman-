@@ -61,5 +61,14 @@
             "Maths": 89.0,
             "Chemistry": 78.0
         }
+    },
+    {
+        "name": "meghana",
+        "rollno": "108",
+        "marks": {
+            "Physics": 76.0,
+            "Maths": 78.0,
+            "Chemistry": 56.0
+        }
     }
 ]

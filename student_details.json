@@ -52,5 +52,14 @@
             "Physics": 56.0,
             "Chemistry": 45.0
         }
+    },
+    {
+        "name": "shashi",
+        "rollno": "107",
+        "marks": {
+            "Physics": 90.0,
+            "Maths": 89.0,
+            "Chemistry": 78.0
+        }
     }
 ]

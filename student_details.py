@@ -59,7 +59,7 @@ class Student:
 
     @classmethod
     def from_dict(cls, data):
-        return cls(data['name'], data['roll_no'], data['marks'])
+        return cls(data['name'], data['rollno'], data['marks'])
        
 students=read_data()  
 students_by_rollno={student.rollno: student for student in students}      

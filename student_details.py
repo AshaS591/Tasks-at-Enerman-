@@ -81,7 +81,7 @@ def student_object_creation(rollno):
                     print('Please enter valid number for marks.')
 
             marks[subject] = mark
-            
+
         student = Student(name, rollno, marks)
         students_by_rollno[rollno] = student
         write_data(students_by_rollno)
@@ -118,7 +118,12 @@ def search_by_rollno(rollno):
         print('Student not found')
 
 def find_topper():
-    ...
+    if not students_by_rollno:
+        print("No students available to find topper.\n")
+        return
+    topper = max(students_by_rollno.values(), key=lambda student: student.average())
+    print("\nTopper Student:")
+    topper.display()
 
 
 def menu():
@@ -126,7 +131,7 @@ def menu():
     students_by_rollno = read_data()
     while True:
         try:
-            choice = int(input("""Enter choice:\n1. Add Student\n2. Display All\n3. Search by Roll No\n4. Exit\n"""))
+            choice = int(input("""Enter choice:\n1. Add Student\n2. Display All\n3.Find Topper\n4. Search by Roll No\n5. Exit\n"""))
         except:
             print('Please enter only integer value for choice...')
 
@@ -149,7 +154,7 @@ def menu():
                 break
             
             else:
-                print('Invalid choice..')
+                print('Invalid choice.Please try again...')
 
 if __name__ == '__main__':
     menu()

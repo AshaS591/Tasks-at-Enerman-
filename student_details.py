@@ -1,21 +1,22 @@
-# Week 3 - Object-Oriented Programming (OOP)
+# Week 4 - Final Integration and Topper Logic
 # Goal:
-# Refactor Week 2 using a Student class.
+# Complete your student system with full logic and polish.
 # Tasks:
-# 1. Define a Student class with attributes:
-# - name, roll_no, marks (dictionary)
-# 2. Add method:
-# - average(): returns average marks
-# 3. Maintain a list of Student objects.
-# 4. Update menu options to work with objects:
-# - Add student
-# - Display all students
-# - Search by roll number
+# 1. Add a function to find the topper (highest average marks).
+# 2. Add error handling using try-except (for numeric inputs).
+# 3. Final menu:
+# 1. Add student
+# 2. Display all
+# 3. Find topper
+# 4. Search by roll number
+# 5. Exit
+# 4. Bonus (optional): Write and read student data from a file.
 # Concepts:
-# - __init__ constructor
-# - Methods
-# - List of objects
-# - OOP principles
+# - max() with lambda
+# - try-except
+# - Program structure cleanup
+# - Optional: File I/O
+
 import json
 students_by_rollno={} 
 
@@ -69,23 +70,25 @@ def student_object_creation(rollno):
     marks = {}
     try:
         subjects = int(input("Enter number of subjects: "))
-    except Exception as msg:
-        print(msg)
-    else:
         for _ in range(subjects):
             subject = input("Enter subject name: ")
-            try:
-                mark = float(input(f"Enter marks for {subject}: "))
-            except Exception as msg:
-                print(msg)
-            else:
-                    marks[subject] = mark
+           
+            while True:
+                try:
+                    mark = float(input(f"Enter marks for {subject}: "))
+                    break
+                except Exception as msg:
+                    print('Please enter valid number for marks.')
+
+            marks[subject] = mark
             
-            student = Student(name, rollno, marks)
-            
-            students_by_rollno[rollno] = student
-            write_data(students_by_rollno)
-            print("Student added successfully.\n")
+        student = Student(name, rollno, marks)
+        students_by_rollno[rollno] = student
+        write_data(students_by_rollno)
+        print("Student added successfully.\n")
+
+    except Exception as msg:
+        print("Please enter valid number for subjects.")
 
 
 def add_student():
@@ -113,7 +116,11 @@ def search_by_rollno(rollno):
         student.display()
     else:
         print('Student not found')
-    
+
+def find_topper():
+    ...
+
+
 def menu():
     global students_by_rollno
     students_by_rollno = read_data()
@@ -126,14 +133,21 @@ def menu():
         else:
             if choice == 1:
                add_student()
+
             elif choice == 2:
                 print('Student Details :')
                 display_all()
+
             elif choice == 3:
+                find_topper()
+
+            elif choice==4 :
                 rollno = input('Enter rollno that you want to search :')
-                search_by_rollno(rollno)
-            elif choice == 4:
+                search_by_rollno(rollno)  
+
+            elif choice == 5:
                 break
+            
             else:
                 print('Invalid choice..')
 

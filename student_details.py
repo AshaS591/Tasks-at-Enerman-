@@ -65,9 +65,30 @@ class Student:
     def from_dict(cls, data):
         return cls(data['name'], data['rollno'], data['marks'])
        
-  
-def student_object_creation(rollno):
+def name_validation():
     name = input("Enter name: ")
+    if name.isalpha():
+        if name[0].isupper():
+            return name
+        else:
+            return name.capitalize()
+    else:
+        print("Please enter only alphabets for name..")
+        return name_validation()
+
+def subject_name_validation():
+    subject = input("Enter subject name: ")
+    if subject.isalpha():
+        if subject[0].isupper():
+            return subject
+        else: 
+            return subject.capitalize()
+    else:
+        print("Please enter only alphabets for subject name..")
+        return subject_name_validation()
+
+def student_object_creation(rollno):
+    name = name_validation()
     marks = {}
     while True:
         try:
@@ -77,8 +98,8 @@ def student_object_creation(rollno):
             print("Please enter valid number for subjects.")
 
     for _ in range(subjects):
-        subject = input("Enter subject name: ")
-            
+        
+        subject = subject_name_validation()
         while True:
             try:
                 mark = float(input(f"Enter marks for {subject}: "))

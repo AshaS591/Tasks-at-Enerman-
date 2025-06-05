@@ -79,5 +79,14 @@
             "maths": 99.0,
             "bio": 95.0
         }
+    },
+    {
+        "name": "sanjay",
+        "rollno": "77",
+        "marks": {
+            "maths": 56.0,
+            "chemistry": 78.0,
+            "physics": 87.0
+        }
     }
 ]

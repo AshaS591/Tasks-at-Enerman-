@@ -70,5 +70,14 @@
             "Maths": 78.0,
             "Chemistry": 56.0
         }
+    },
+    {
+        "name": "asha",
+        "rollno": "1",
+        "marks": {
+            "chemistry": 90.0,
+            "maths": 99.0,
+            "bio": 95.0
+        }
     }
 ]

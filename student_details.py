@@ -27,7 +27,7 @@ def read_data():
             data = json.load(file)
             return {item['rollno'] : Student.from_dict(item) for item in data}
     except FileNotFoundError:
-        return []
+        return {}
 
 def write_data(students):
     with open('student_details.json', 'w') as file:
@@ -40,11 +40,12 @@ class Student:
         self.marks = marks
     
     def average(self):
-        avg = round(sum(self.marks.values())/len(self.marks))
-        return avg
+        return round(sum(self.marks.values())/len(self.marks))
+
       
     def display(self):
         
+        print("-" * 30)
         print(f"Name: {self.name}")
         print(f"Roll No: {self.rollno}")
         print("Marks:")
@@ -68,28 +69,31 @@ class Student:
 def student_object_creation(rollno):
     name = input("Enter name: ")
     marks = {}
-    try:
-        subjects = int(input("Enter number of subjects: "))
-        for _ in range(subjects):
-            subject = input("Enter subject name: ")
-           
-            while True:
-                try:
-                    mark = float(input(f"Enter marks for {subject}: "))
-                    break
-                except Exception as msg:
-                    print('Please enter valid number for marks.')
+    while True:
+        try:
+            subjects = int(input("Enter number of subjects: "))
+            break
+        except Exception:
+            print("Please enter valid number for subjects.")
 
-            marks[subject] = mark
+    for _ in range(subjects):
+        subject = input("Enter subject name: ")
+            
+        while True:
+            try:
+                mark = float(input(f"Enter marks for {subject}: "))
+                break
 
-        student = Student(name, rollno, marks)
-        students_by_rollno[rollno] = student
-        write_data(students_by_rollno)
-        print("Student added successfully.\n")
+            except Exception:
+                print('Please enter valid number for marks.')
 
-    except Exception as msg:
-        print("Please enter valid number for subjects.")
+        marks[subject] = mark
 
+    student = Student(name, rollno, marks)
+    students_by_rollno[rollno] = student
+    write_data(students_by_rollno)
+    print("Student added successfully.\n")
+            
 
 def add_student():
   
@@ -98,7 +102,6 @@ def add_student():
     if roll_no not in students_by_rollno:
         student_object_creation(roll_no)
 
-       
     else:
         print("Student with this roll number already exists.Try with some other number..\n")
         add_student()  
@@ -110,12 +113,14 @@ def display_all():
     for student in students_by_rollno.values():
         student.display()
 
-def search_by_rollno(rollno):
+def search_by_rollno():
+    rollno = input('Enter rollno that you want to search :')
     student = students_by_rollno.get(rollno)
     if student:
         student.display()
     else:
         print('Student not found')
+        
 
 def find_topper():
     if not students_by_rollno:
@@ -129,9 +134,17 @@ def find_topper():
 def menu():
     global students_by_rollno
     students_by_rollno = read_data()
+
     while True:
         try:
-            choice = int(input("""Enter choice:\n1. Add Student\n2. Display All\n3.Find Topper\n4. Search by Roll No\n5. Exit\n"""))
+            print('1. Add Student')
+            print('2. Display All')
+            print('3.Find Topper')
+            print('4. Search by Roll No')
+            print('5. Exit\n')
+
+            choice = int(input("Enter choice :"))
+
         except:
             print('Please enter only integer value for choice...')
 
@@ -147,8 +160,8 @@ def menu():
                 find_topper()
 
             elif choice==4 :
-                rollno = input('Enter rollno that you want to search :')
-                search_by_rollno(rollno)  
+                
+                search_by_rollno()  
 
             elif choice == 5:
                 break
